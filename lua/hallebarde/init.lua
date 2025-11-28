@@ -33,6 +33,9 @@ M.setup = function()
 			linecolumn = "#E3DFD7",
 			select = "#D3DFEF",
 			punctuation = "#9A9488",
+
+			floatborder = "#3A4A5E",
+			directory = "#E67E22",
 		},
 	}
 
@@ -130,6 +133,21 @@ M.setup = function()
 	vim.api.nvim_set_hl(0, "BufferDefaultCurrentPin", { fg = p.bg })
 	vim.api.nvim_set_hl(0, "BufferDefaultCurrentPinBtn", { fg = p.bg })
 	vim.api.nvim_set_hl(0, "BufferDefaultCurrentIcon", { fg = p.bg })
+
+	-- floating windows (popup'ы)
+	vim.api.nvim_set_hl(0, "NormalFloat", { fg = p.fg, bg = p.bg })
+	vim.api.nvim_set_hl(0, "FloatBorder", { fg = p.fg or p.punctuation, bg = p.bg })
+	vim.api.nvim_set_hl(0, "FloatTitle", { fg = p.fg, bg = p.bg, bold = true })
+
+	-- диагностические попапы LSP
+	vim.api.nvim_set_hl(0, "DiagnosticFloatingError", { fg = p.red, bg = p.bg })
+	vim.api.nvim_set_hl(0, "DiagnosticFloatingWarn", { fg = p.yellow, bg = p.bg })
+	vim.api.nvim_set_hl(0, "DiagnosticFloatingInfo", { fg = p.blue, bg = p.bg })
+	vim.api.nvim_set_hl(0, "DiagnosticFloatingHint", { fg = p.green, bg = p.bg })
+
+	vim.api.nvim_set_hl(0, "LspInfoBorder", { link = "FloatBorder" })
+
+	vim.api.nvim_set_hl(0, "Directory", { fg = p.fg, bold = true })
 
 	-- clear existing filetype highlights for this theme
 	vim.api.nvim_clear_autocmds({ group = "HallebardeAutocmds" })
